@@ -1,4 +1,4 @@
-export default function counterButtons({title, handleClick}) {
+export default function CounterButtons({title, handleClick}) {
   return (
      <button 
 
