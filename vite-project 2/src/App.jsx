@@ -3,6 +3,7 @@ import CounterButtons from "./components/counterButtons.jsx";
 import CounterDisplay from './components/CounterDisplay';
 import Header from './components/header';
 import Message from './components/Message.jsx';
+import ResetButton from './components/ResetButton.jsx';
 
 function App() {
 
@@ -35,6 +36,10 @@ const [counter, setCounter] = useState(0); //state variable
         handleClick={() => {
           setCounter(counter - 1);
         }}
+      />
+      <ResetButton
+        title={"Reset"}
+        handleReset={() => {setCounter(0)}}
       />
 
     </>
