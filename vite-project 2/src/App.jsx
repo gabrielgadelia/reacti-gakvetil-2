@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import CounterButtons from "./components/counterButtons.jsx";
+import CounterButtons from "./components/CounterButtons";
 import CounterDisplay from './components/CounterDisplay';
-import Header from './components/header';
-import Message from './components/Message.jsx';
-import ResetButton from './components/ResetButton.jsx';
+import Header from './components/Header';
+import Message from './components/Message';
+import ResetButton from './components/ResetButton';
 
 function App() {
 
