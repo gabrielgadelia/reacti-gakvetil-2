@@ -1,18 +1,17 @@
 const diceEmojis = ["⚀", "⚁", "⚂", "⚃", "⚄", "⚅"];
 
 export default function Player({ title, index, handleClick, isDisabled }) {
-  let buttonStyle = isDisabled
+  const buttonStyle = isDisabled
     ? { ...baseStyle, ...disabledStyle }
     : { ...baseStyle };
 
-    
-
+  const diceEmoji = index === null ? diceEmojis[0] : diceEmojis[index - 1];
 
   return (
     <>
       <div>
-        <h3>{title}</h3>
-        <div style={{ fontSize: "60px" }}>{diceEmojis[index - 1]}</div>
+        <h3 style={{ fontSize: "20px" }}>{title}</h3>
+        <div style={{ fontSize: "80px" }}>{diceEmoji}</div>
         <button onClick={handleClick} style={buttonStyle} disabled={isDisabled}>
           Roll Dice
         </button>
@@ -37,21 +36,3 @@ const baseStyle = {
   color: "white",
   border: "none",
 };
-
-
-
-
-
-// export default function DiceTitle({title, index, generateRandomDice, isDisabled}) {
-//     const diceEmojis = ["⚀", "⚁", "⚂", "⚃", "⚄", "⚅"];
-
-//     return(
-//          <div>
-//             <h3>{title}</h3>
-//             <div style={{fontSize: "60px"}}>{diceEmojis[index - 1]}</div>
-
-//             <button onClick={generateRandomDice } disabled={isDisabled}>CLICK TO GET DICE</button>
-//           </div>
-//     )
-// }
-
