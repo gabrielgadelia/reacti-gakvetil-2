@@ -7,7 +7,6 @@ function App() {
   const [player2, setPlayer2] = useState(null);
   const [round, setRound] = useState(1); // ✅ Track the current round
   const [totalRounds, setTotalRounds] = useState(5);
-  // const [currentPlayer, setCurrentPlayer] = useState(1);
 
   const current = () => {
     if (player1 === null) return 1;
@@ -43,11 +42,13 @@ const rollDice = () => {
     setPlayer1(null);
     setPlayer2(null);
     setRound(round + 1);
-  };
-
+    if(round === totalRounds){
+      alert("Game Over! Starting a new game.");
+      setRound(1);
+      setTotalRounds(5);
+    }
   
-
-
+  };
 return (
     <div
       style={{
@@ -79,7 +80,7 @@ return (
           title={"Player 1"}
           index={player1}
           handleClick={rollDice}
-          isDisabled={current() === 2}
+          isDisabled={current() === 2 || winner() !== null}
         />
 
         <div style={{ fontSize: "40px" }}>VS</div>
@@ -88,7 +89,7 @@ return (
           title={"Player 2"}
           index={player2}
           handleClick={rollDice}
-          isDisabled={current() === 1}
+          isDisabled={current() === 1 || winner() !== null}
         />
       </div>
       
@@ -99,7 +100,6 @@ return (
           rounds={round}
         />
       )}
-      {/* {winner() && <WinnerBanner winner={winner()}  onPlayAgain={playAgain} />} */}
     </div>
   );
 }
