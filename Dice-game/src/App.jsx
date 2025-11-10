@@ -5,6 +5,8 @@ import WinnerBanner from "./components/WinnerBanner.jsx";
 function App() {
   const [player1, setPlayer1] = useState(null);
   const [player2, setPlayer2] = useState(null);
+  const [round, setRound] = useState(1); // ✅ Track the current round
+  const [totalRounds, setTotalRounds] = useState(5);
   // const [currentPlayer, setCurrentPlayer] = useState(1);
 
   const current = () => {
@@ -40,7 +42,10 @@ const rollDice = () => {
   const playAgain = () => {
     setPlayer1(null);
     setPlayer2(null);
+    setRound(round + 1);
   };
+
+  
 
 
 return (
@@ -54,6 +59,11 @@ return (
         flexDirection: "column",
       }}
     >
+
+       <h1>🎲 2-Player Dice Game</h1>
+      <h2>Round {round} / {totalRounds}</h2>
+
+
       <h1>2-Player Dice Game</h1>
 
       <div
@@ -82,8 +92,14 @@ return (
         />
       </div>
       
-
-      {winner() && <WinnerBanner winner={winner()}  onPlayAgain={playAgain} />}
+    {winner() && (
+        <WinnerBanner
+          winner={winner()}
+          onPlayAgain={playAgain}
+          rounds={round}
+        />
+      )}
+      {/* {winner() && <WinnerBanner winner={winner()}  onPlayAgain={playAgain} />} */}
     </div>
   );
 }
