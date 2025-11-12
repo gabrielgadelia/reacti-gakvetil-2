@@ -41,7 +41,7 @@ export default function WinnerBanner({ winner, onPlayAgain, rounds = 5 }) {
           fontWeight: "bold",
         }}
       >
-        🎲 Play Again
+        🎲 Play Another Round
       </button>
     </div>
   );
