@@ -16,7 +16,7 @@ export default function GameBoard({ currentPlayer, onSquareSeelct }) {
       return updatedBoard;
     });
 
-    onSquareSeelct();
+    onSquareSeelct(rowIndex, colIndex);
   }
 
   return (
@@ -26,7 +26,10 @@ export default function GameBoard({ currentPlayer, onSquareSeelct }) {
           <ol>
             {row.map((playerSymbol, colIndex) => (
               <li key={colIndex}>
-                <button onClick={() => handleSquareSelect(rowIndex, colIndex)}>
+                <button
+                  onClick={() => handleSquareSelect(rowIndex, colIndex)}
+                  disabled={playerSymbol !== null}
+                >
                   {playerSymbol}
                 </button>
               </li>
