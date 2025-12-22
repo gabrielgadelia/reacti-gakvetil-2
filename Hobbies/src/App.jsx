@@ -18,10 +18,22 @@ function App() {
     setInputValue("");
   }
 
-  function toggleFavorite(id) {
-    setHobbies(
-      hobbies.map((hobby) =>
-        hobby.id === id ? { ...hobby, isFavorite: !hobby.isFavorite } : hobby
+function toggleFavorite(id) {
+  setHobbies(
+    hobbies.map((hobby) => {
+      if (hobby.id === id) {
+        return {
+          ...hobby,
+          isFavorite: !hobby.isFavorite,
+        };
+      }
+
+      return hobby;
+    })
+  );
+}
+
+return hobby;
       )
     );
   }
