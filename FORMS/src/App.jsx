@@ -1,91 +1,39 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 import "./App.css";
 
 function App() {
-  const [name, setName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState({
-    name: "",
-    lastName: "",
-    email: "",
-    password: "",
-  });
+  const { register, handleSubmit } = useForm();
 
-  function handleReset(e) {
-    e.preventDefault();
-
-    let newErrors = {
-      name: "",
-      lastName: "",
-      email: "",
-      password: "",
-    };
-
-    if (name.length < 4) {
-      setErrors({ ...errors, name: "nameis too short" });
-    }
-
-    if (lastName.length < 5) {
-      setErrors({ ...errors, lastName: "Last name is too short" });
-    }
-
-    if (!email.includes("@")) {
-      setErrors({ ...errors, email: "email has to contain @ symbol" });
-    }
-
-    setErrors(newErrors);
-
-    console.log(name, lastName, email, password);
+  function onSubmit(data) {
+    console.log(data);
   }
 
   return (
     <>
-      <form action="" onSubmit={handleReset}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <input
+          className="bg-blue-500 border border-black"
+          {...register("email", {
+            required: true,
+            validate: (value) => value.includes("@gmail.com"),
+          })}
           type="text"
-          name="name"
-          placeholder="enter name"
-          value={name}
-          onChange={(e) => {
-            setName(e.target.value);
-          }}
+          placeholder="enter email"
         />
-        {errors.name && <p>{errors.name}</p>}
 
         <input
-          type="text"
-          name="last name"
-          placeholder="enter last name"
-          value={lastName}
-          onChange={(e) => {
-            setLastName(e.target.value);
-          }}
-        />
-        {errors.lastName && <p>{errors.lastName}</p>}
-
-        <input
+          class="bg-blue-500 border border-black"
+          {...register("password", {
+            required: true,
+            minLength: 8,
+            maxLength: 16,
+          })}
           type="password"
           name="password"
           placeholder="enter password"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
         />
-
-        <input
-          type="text"
-          name="email"
-          placeholder="enter email"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        />
-        {errors.email && <p>{errors.email}</p>}
 
         <button type="submit" placeholder="log in">
           log in
