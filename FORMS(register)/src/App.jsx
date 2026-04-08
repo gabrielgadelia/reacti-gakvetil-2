@@ -5,7 +5,6 @@ import "./App.css";
 
 const schema = z.object({
   email: z
-    .string()
     .email("Invalid email")
     .refine((v) => v.endsWith("@gmail.com"), "Email must contain @gmail.com"),
   password: z
