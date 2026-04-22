@@ -30,7 +30,7 @@ export default function Layout() {
                 <option value="/debuleba/wesebi">წესები</option>
                 <option value="/debuleba/prizebi">პრიზები</option>
               </select>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center">
               <select
                 className="appearance-none text-gray-800 font-medium hover:text-blue-700 transition text-sm bg-transparent border-none outline-none cursor-pointer p-0"
                 defaultValue=""
