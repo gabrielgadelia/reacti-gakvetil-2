@@ -1,6 +1,33 @@
 import "../App.css";
 
 function Login() {
+
+async function onLogin(data) {
+  try {
+    const response = await fetch("http://localhost:3000/loginStudent", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: data.email,
+        password: data.password,
+      }),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      console.log("Login failed:", result.message);
+      return;
+    }
+
+    console.log("Login success:", result);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
   return (
     <div className="flex items-center justify-center min-h-[70vh] bg-yellow-400">
       <form className="bg-white p-8 rounded-2xl shadow-md w-full max-w-sm">

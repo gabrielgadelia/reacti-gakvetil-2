@@ -28,9 +28,6 @@ const schema = z.object({
     .string()
     .min(2, "TOO SHORT")
     .max(15, "TOO LONG")
-    .refine((v) => /[A-Z]/.test(v), "Must include uppercase letter")
-    .refine((v) => /[!@#$%^&*]/.test(v), "Must contain a symbol")
-    .refine((v) => /\d/.test(v), "Must contain a number"),
 });
 
 function Register() {
@@ -42,11 +39,32 @@ function Register() {
     resolver: zodResolver(schema),
   });
 
-  async function onSubmit(data) {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log(data);
-  }
+async function onSubmit(data) {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
 
+  try {
+    const response = await fetch("http://localhost:3000/addStudent", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: data.email,
+        passcode: data.password,
+        firstName: data.firstname,
+        lastName: data.lastname,
+        phoneNumber: data.phoneNumber,
+        grade: data.grade,
+        Nickname: data.Nickname,
+      }),
+    });
+
+    const result = await response.json();
+    console.log(result);
+  } catch (error) {
+    console.error(error);
+  }
+}
   return (
     <div className="min-h-screen bg-yellow-400 flex items-center justify-center p-6">
       <div className="bg-white rounded-2xl shadow-lg p-8 w-full max-w-md">

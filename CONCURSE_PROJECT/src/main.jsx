@@ -7,6 +7,7 @@ import Index from "./pages/index.jsx";
 import Login from "./pages/login.jsx";
 import Register from "./pages/regsiter.jsx";
 import Layout from "./pages/layout.jsx";
+import Provision from "./pages/Provision.jsx"
 
 const routor = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const routor = createBrowserRouter([
       { index: true, element: <Index /> },
       { path: "/register", element: <Register /> },
       { path: "/login", element: <Login /> },
+      { path: "/Provision/:id", element: <Provision /> }
     ],
   },
 ]);
